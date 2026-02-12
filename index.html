@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIDALE 4GAMING</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 30px 0;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: slideDown 0.8s ease-out;
+        }
+        
+        h2 {
+            color: white;
+            font-size: 1.8rem;
+            margin: 20px 0 10px;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 10px;
+            animation: fadeInLeft 0.6s ease-out;
+        }
+        
+        h3 {
+            color: #764ba2;
+            font-size: 1.4rem;
+            margin: 15px 0;
+            animation: fadeInRight 0.6s ease-out;
+        }
+        
+        h4 {
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+        
+        p {
+            margin: 15px 0;
+            color: rgba(0, 0, 0, 0.8);
+            line-height: 1.8;
+        }
+        
+        a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+        }
+        
+        a:hover {
+            transform: translateY(-3px);
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            margin: 20px auto;
+            border-radius: 12px;
+            max-width: 1000px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        input[type="search"],
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            padding: 12px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        
+        input[type="search"]:focus,
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #764ba2;
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
+            transform: scale(1.02);
+        }
+        
+        input[type="submit"],
+        input[type="reset"],
+        input[type="button"] {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        
+        input[type="submit"] {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        input[type="submit"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        input[type="submit"]:active {
+            transform: translateY(-1px);
+        }
+        
+        input[type="reset"] {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        
+        input[type="reset"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(245, 87, 108, 0.4);
+        }
+        
+        input[type="button"] {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        
+        input[type="button"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(79, 172, 254, 0.4);
+        }
+        
+        a[download],
+        a[href *="ROCKSTAR"] {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        
+        a[download]:hover,
+        a[href *="ROCKSTAR"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        img {
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        img:hover {
+            transform: scale(1.08) rotate(1deg);
+        }
+        
+        iframe {
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        iframe:hover {
+            transform: translateY(-5px);
+        }
+        
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        table caption {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        table tbody tr:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: scale(1.01);
+            transition: all 0.2s ease;
+        }
+        
+        form {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 600px;
+            margin: 30px auto;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        fieldset {
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        legend {
+            color: #764ba2;
+            font-weight: 700;
+            padding: 0 10px;
+            font-size: 1.1rem;
+        }
+        
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 8px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            cursor: pointer;
+        }
+        
+        ol, ul {
+            margin: 20px 0 20px 40px;
+            color: rgba(0, 0, 0, 0.8);
+        }
+        
+        li {
+            margin: 10px 0;
+            transition: all 0.2s ease;
+        }
+        
+        li:hover {
+            color: #667eea;
+            transform: translateX(5px);
+        }
+        
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+            margin: 30px 0;
+        }
+        
+        div {
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            section, form {
+                margin: 15px;
+                padding: 15px;
+            }
+            
+            table {
+                width: 95%;
+            }
+        }
+
+        /* Sign In Button Styles */
+        .signin-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            padding: 10px 24px;
+            background: linear-gradient(135deg, #08e647 0%, #00c3cc 100%);
+            color: black;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 15px rgba(8, 230, 71, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .signin-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(8, 230, 71, 0.5), 0 0 30px rgba(0, 195, 204, 0.4);
+            background: linear-gradient(135deg, #00c3cc 0%, #08e647 100%);
+        }
+
+        .signin-btn:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+        /* Modal Login Styles */
+        .login-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .login-modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-modal-content {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 40px;
+            border-radius: 16px;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+
+        .login-modal-content h2 {
+            color: #e8f1ff;
+            font-size: 22px;
+            margin-bottom: 10px;
+            text-align: center;
+            border: none;
+            padding: 0;
+        }
+
+        .login-modal-content p {
+            color: #a0b0c8;
+            text-align: center;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #e8f1ff;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: transform 0.2s ease;
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg);
+        }
+
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-form .input-box {
+            margin-bottom: 18px;
+        }
+
+        .modal-form label {
+            color: #e8f1ff;
+            font-size: 13px;
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .modal-form input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #0d7376;
+            background: #0f1419;
+            color: white;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .modal-form input:focus {
+            box-shadow: 0 0 15px rgba(8, 230, 71, 0.4);
+            border-color: #08e647;
+            background: #151b24;
+        }
+
+        .modal-form .forgot-pwd {
+            text-align: right;
+            margin-bottom: 14px;
+        }
+
+        .modal-form .forgot-pwd a {
+            color: #6ba3ff;
+            font-size: 12px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .modal-form .forgot-pwd a:hover {
+            color: #8bb7ff;
+        }
+
+        .modal-form .login-btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #08e647 0%, #00c3cc 100%);
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 15px rgba(8, 230, 71, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 13px;
+        }
+
+        .modal-form .login-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(8, 230, 71, 0.5);
+        }
+
+        .modal-form .login-btn:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+        .modal-divider {
+            text-align: center;
+            margin: 16px 0;
+            color: #7a8fa8;
+            font-size: 12px;
+            position: relative;
+        }
+
+        .modal-divider::before,
+        .modal-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background: #0d7376;
+        }
+
+        .modal-divider::before {
+            left: 0;
+        }
+
+        .modal-divider::after {
+            right: 0;
+        }
+
+        .modal-signup {
+            text-align: center;
+            color: #a0b0c8;
+            font-size: 12px;
+            margin-top: 16px;
+        }
+
+        .modal-signup a {
+            color: #6ba3ff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .modal-signup a:hover {
+            color: #8bb7ff;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+   <!-- Sign In Button -->
+   <button class="signin-btn" id="signinBtn">Sign In</button>
+
+   <!-- Login Modal -->
+   <div class="login-modal" id="loginModal">
+      <div class="login-modal-content">
+         <button class="close-modal" id="closeModal">&times;</button>
+         
+         <h2>Sign in to Your Account</h2>
+         <p>Access exclusive gaming content and features</p>
+
+         <form class="modal-form" method="post">
+            <div class="input-box">
+               <label for="modal-email">Email <span style="color:#ff6b6b;">*</span></label>
+               <input type="email" id="modal-email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="input-box">
+               <label for="modal-password">Password <span style="color:#ff6b6b;">*</span></label>
+               <input type="password" id="modal-password" name="password" placeholder="Enter your password" required>
+            </div>
+
+            <div class="forgot-pwd">
+               <a href="#">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="login-btn">Sign In</button>
+         </form>
+
+         <div class="modal-divider">or</div>
+
+         <div style="text-align:center; margin-bottom:16px;">
+            <a href="#" style="display:inline-block; width:100%; padding:10px; background:linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.1)); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#e8f1ff; text-decoration:none; font-size:13px; font-weight:600; transition:all 0.3s ease;">
+               Sign in with Google
+            </a>
+         </div>
+
+         <div class="modal-signup">
+            Don't have an account? <a href="#">Create Now</a>
+         </div>
+      </div>
+   </div>
+
+   <div>
+      <label for="search">
+      <input type="search" id="search" name="search" placeholder="Search for games "><input type="submit" value="search">
+      </label>
+   </div>
+ <h1>NIDALE 4GAMING</h1>
+ <section>
+  <h2>PC GAMES</h2>
+<P>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate sapiente 
+    cumque facere labore, vel temporibus praesentium consectetur
+     ipsam ducimus ea voluptatum fugit cum animi odio, quo nostrum,
+      quas dolore! Explicabo!
+ </P>
+ </section>
+ 
+<section>
+<H3>ACTION GAMES</H3>
+ <H2>PS4 GAMES</H2>
+ <H3>READ DEAD REDEMPTION 2  </H3>
+ <img width="200" title="RED DEAD 2 PS4 " src="rdr2.jpg" >
+ <br>
+ <a download="RDR2 PS4 COVER" href="rdr2.jpg" >Download photo cover</a>
+ <br>
+<iframe 
+    width="560" 
+    height="315" 
+    src="https://www.youtube-nocookie.com/embed/gmA6MrX81z4" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+</iframe>
+ <p></p>
+<h3>READ DEAD REDEMPTION 2</h3>
+
+ <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
+     voluptate cumque facere labore, vel temporibus praesentium consectetur
+      ipsam ducimus ea voluptatum fugit cum animi odio, quo nostrum,
+       quas dolore! Explicabo!</P>
+ <a  href="http://WWW.ROCKSTARGAMES.COM">GET THE GAME </a>
+ <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore modi
+     temporibus rerum, facilis animi debitis inventore labore harum consequatur
+      quaerat enim nostrum obcaecati magni atque in, repellat officiis, cum saepe
+       quam. Eos obcaecati eveniet consequuntur officia sequi, vitae dolorem veritatis
+        praesentium, earum nam ex quo sapi
+    ente quas fugiat quibusdam alias ut. Asperiores pariatur ipsum nobis! </P>
+</section>
+
+<section>
+<H3>FANTASY GAMES</H3> 
+<P>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+     Cupiditate enim consequatur blanditiis!</P>
+</section>
+
+<section>
+ <H2>PS3 GAMES</H2>
+ <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, unde quaerat.
+    Repudiandae minus aut modi dolorum? Corporis, incidunt a! Nulla perspiciatis
+     ducimus ipsum. Quam, quibusdam similique. Reprehenderit, aspernatur!
+      Dolorum neque ex praesentium? Non a fugit aut laborum tenetur iste odit 
+      vitae possimus magni quae, voluptas quisquam vero nemo error quam, amet
+       dicta corrupti odio adipisci sunt dignissimos, eum pariatur perferendis 
+       similique. Et molestias blanditiis illum autem nemo neque quam error eum alias
+       , ipsam quo deleniti officia aperiam deserunt vero quisquam recusandae 
+    dicta delectus, ut minus ea iusto! Perspiciatis, voluptate laborum!</P>
+ <H3>FIRE GAMES</H3>
+</section>
+
+<section>
+ <H2>PS2 GAMES</H2>
+   <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas voluptate cumque facere labore,
+      vel temporibus praesentium consectetur ipsam ducimus ea voluptatum fugit cum animi odio,
+         quo nostrum, quas dolore! Explicabo!</P>
+</section>
+
+<section>
+ <H2>ALL XBOX GAMES</H2>
+      <p>
+         Lorem <strong>ipsum</strong> dolor sit amet consectetur adipisicing elit.
+          Voluptas voluptate cumque facere labore, vel temporibus praesentium 
+          consectetur ipsam ducimus ea voluptatum fugit cum animi odio, quo nostrum, quas dolore! Explicabo!
+      </p>
+</section>
+
+ <table  border="1">
+    <caption><H4>TABLE  PRICES OF PS4 GAMES</H4></caption>
+      <thead>
+         <tr>
+         <th>Game</th>
+         <th>Price</th>
+         <th>Rate</th>
+         </tr>
+      </thead>
+      <tbody>
+           <tr>
+           <td>FIFA 26</td>
+           <td>60 $</td>
+           <td>9/10</td>
+           </tr>
+              <tr>
+               <td>CALL OF DUTY MODERN WARFARE 2</td>
+               <td>70 $</td>
+               <td>8.5/10</td>
+            </tr>
+             <tr>
+              <td>FORZA HORIZON 5</td>   
+               <td>65 $</td>
+                <td>9.5/10</td>
+            </tr>
+            <tr>
+                <td>GTA 5</td>
+                <td>50 $</td>
+                <td>9/10</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ol type="A">
+                <LI>FIFA 26</LI>
+                <LI>CALL OF DUTY MODERN WARFARE 2</LI>
+                <LI>FORZA HORIZON 5</LI>
+                <LI>GTA 5</LI>
+    </ol>
+
+    <form method="post" >
+        <fieldset>
+            <legend>SEND A MESSAGE </legend>
+ <label for="txt">user name</label>
+ <input type="text" id="txt" name="txt" required><br><br>
+ <label for="email">email</label>
+ <input type="email" id="email" name="email" required><br><br>
+ <label for="msg">message</label>
+ <textarea id="msg" name="msg" required rows="3" cols="55"></textarea><br><br> 
+ <input type="reset" value="clear">
+ <input type="submit" value="send">
+         </fieldset>   
+<label for="range"><i><h4>range</h4></i></label>
+<input type="range" id="range" name="range" min="0" max="10" value="0" step="1">
+<h3><i>what is your fav game in ps4 </i></h3>
+   <div>
+      <input type="radio" id="fifa" name="favgame" value="fifa">
+      <label for="fifa">FIFA 26</label><br>
+      <input type="radio" id="cod" name="favgame" value="cod">
+      <label for="cod">CALL OF DUTY MODERN WARFARE 2</label><br>
+      <input type="radio" id="forza" name="favgame" value="forza">
+      <label for="forza">FORZA HORIZON 5</label><br>
+      <input type="radio" id="gta" name="favgame" value="gta">
+      <label for="gta">GTA 5</label><br>
+      <input type="submit">
+   </div>
+   <input type="button" id="subscribe" name="subscribe" value="click to subscribe"><br>
+<label for="subscribe">Subscribe to our newsletter</label><br>
+</form>
+</body>
+
+<script>
+   // Modal Login Functionality
+   const signinBtn = document.getElementById('signinBtn');
+   const loginModal = document.getElementById('loginModal');
+   const closeModal = document.getElementById('closeModal');
+
+   // Open modal
+   signinBtn.addEventListener('click', function() {
+      loginModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+   });
+
+   // Close modal
+   closeModal.addEventListener('click', function() {
+      loginModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+   });
+
+   // Close modal when clicking outside
+   window.addEventListener('click', function(event) {
+      if (event.target === loginModal) {
+         loginModal.classList.remove('active');
+         document.body.style.overflow = 'auto';
+      }
+   });
+
+   // Close on Escape key
+   document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+         loginModal.classList.remove('active');
+         document.body.style.overflow = 'auto';
+      }
+   });
+
+   // Form submission (optional - for demonstration)
+   document.querySelector('.modal-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('modal-email').value;
+      const password = document.getElementById('modal-password').value;
+      
+      // You can add your login logic here
+      console.log('Login attempt with:', { email, password });
+      alert('Login functionality ready to be integrated!');
+      
+      // Close modal after attempt
+      loginModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+   });
+</script>
+
+</html>
