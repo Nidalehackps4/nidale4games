@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- خطوط Google Fonts: احترافي للعناوين + نص عام -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+<title>NIDALE 4GAME</title>
+<div class="stars"></div>
+
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    font-family:'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    overflow:hidden;
+    position:relative;
+
+    /* خلفية أغلفة ألعاب + كونسولات */
+    background:
+    linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+    url("https://images.unsplash.com/photo-1605902711622-cfb43c4437d1"),
+    url("https://images.unsplash.com/photo-1598550880863-4e8aa3d0a6f6"),
+    url("https://images.unsplash.com/photo-1511512578047-dfb367046420");
+    background-size:cover;
+    background-position:center;
+}
+
+/* vignette + film-grain texture overlay */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+    background:
+        radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.45) 100%),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' seed='1'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+    background-size: cover, 300px 300px;
+    background-repeat: no-repeat, repeat;
+}
+
+/* عنوان الموقع */
+.site-title{
+    font-family: 'Montserrat', sans-serif;
+    font-size:44px;
+    font-weight:700;
+    color:#e6eefc;
+    letter-spacing:2px;
+    margin-bottom:10px;
+    position:relative;
+    animation:fadeIn 1s ease forwards;
+    text-shadow:0 6px 18px rgba(0,0,0,0.6);
+    z-index:2;
+}
+.menu-btn{
+    position:fixed;
+    left:18px;
+    top:18px;
+    z-index:1300;
+    width:44px;
+    height:44px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
+    align-items:center;
+    padding:6px;
+    background:rgba(255,255,255,0.02);
+    border:1px solid rgba(255,255,255,0.04);
+    border-radius:10px;
+    cursor:pointer;
+    backdrop-filter: blur(6px);
+}
+.menu-btn:focus{outline:2px solid rgba(100,160,255,0.18)}
+.menu-btn .dash{display:block; width:18px; height:2px; background:#e8f1ff; border-radius:2px; transition:transform .28s ease}
+
+.menu-panel{
+    position:fixed;
+    left:18px;
+    top:72px;
+    z-index:1200;
+    width:220px;
+    background:linear-gradient(180deg, rgba(12,14,18,0.98), rgba(6,8,12,0.98));
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,0.04);
+    box-shadow:0 14px 40px rgba(4,24,48,0.6);
+    padding:10px;
+    transform:translateY(-6px) scale(.98);
+    opacity:0;
+    pointer-events:none;
+    transition:transform .22s cubic-bezier(.2,.9,.3,1), opacity .22s ease;
+}
+.menu-panel.open{transform:translateY(0) scale(1); opacity:1; pointer-events:auto}
+.menu-panel ul{list-style:none}
+.menu-panel .menu-link{display:block; padding:10px 8px; color:#e8f1ff; text-decoration:none; border-radius:8px}
+.menu-panel .menu-link:hover{background:rgba(255,255,255,0.02); transform:translateX(6px)}
+
+.stars{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background:transparent url("https://www.transparenttextures.com/patterns/stardust.png") repeat;
+    animation:moveStars 60s linear infinite;
+    z-index:-2;
+    opacity:0.4;
+}
+
+@keyframes moveStars{
+    from{background-position:0 0;}
+    to{background-position:10000px 5000px;}
+}
+
+
+
+/* تأثير glitch */
+.site-title::before,
+.site-title::after{
+    content:"NIDALE 4GAME";
+    position:absolute;
+    left:0;
+    width:100%;
+    opacity:0.7;
+}
+
+.site-title::before{
+    color:#ff00c8;
+    z-index:-1;
+    animation:glitch 1s infinite;
+}
+
+.site-title::after{
+    color:#00ffea;
+    z-index:-2;
+    animation:glitch 1s infinite reverse;
+}
+
+@keyframes glitch{
+    0%{transform:translate(0);}
+    20%{transform:translate(-2px,2px);}
+    40%{transform:translate(-2px,-2px);}
+    60%{transform:translate(2px,2px);}
+    80%{transform:translate(2px,-2px);}
+    100%{transform:translate(0);}
+}
+
+/* صندوق تسجيل الدخول */
+.login-box{
+    width:360px;
+    padding:36px 32px 22px 32px;
+    background:linear-gradient(180deg, rgba(10,12,16,0.95), rgba(6,8,10,0.95));
+    border-radius:12px;
+    box-shadow:0 12px 40px rgba(0,0,0,0.8), 0 6px 20px rgba(2,20,40,0.45);
+    animation:slideUp 1s ease forwards;
+    transform:translateY(30px);
+    opacity:0;
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.04);
+    z-index:2;
+}
+
+/* single-color subtle glow instead of multicolor border */
+.login-box::before{
+    content:"";
+    position:absolute;
+    top:0; left:0; right:0; bottom:0;
+    border-radius:12px;
+    box-shadow:0 0 40px rgba(40,120,255,0.06) inset;
+    z-index:-1;
+}
+
+@keyframes glowBorder{
+    0%{background-position:0 0;}
+    50%{background-position:400% 0;}
+    100%{background-position:0 0;}
+}
+
+.login-box h2{
+    text-align:center;
+    margin:6px 0 8px 0;
+    color:#e8f1ff;
+    font-size:20px;
+}
+
+/* Optional description under title */
+.site-desc{
+    text-align:center;
+    color:rgba(230,240,255,0.92);
+    font-size:16px;
+    font-weight:500;
+    margin-bottom:18px;
+    line-height:1.35;
+    max-width:560px;
+    letter-spacing:0.2px;
+    /* prepare for typing container */
+    overflow:hidden;
+    position:relative;
+    z-index:2;
+}
+
+/* typing effect */
+.typing{
+    display:inline-block;
+    min-height:22px;
+    white-space:nowrap;
+}
+.typing::after{
+    content:"";
+    display:inline-block;
+    width:2px;
+    height:1.05em;
+    margin-left:6px;
+    background:linear-gradient(180deg,#e8f1ff,#cfe8ff);
+    vertical-align:middle;
+    animation:blink 1s steps(2,start) infinite;
+}
+@keyframes blink{50%{opacity:0}}
+
+/* Balloon animation inside the login box */
+.balloons{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:0;
+}
+/* keep form above decorative icons */
+.login-box h2,
+.login-box form{
+    position:relative;
+    z-index:1;
+}
+/* game-themed floating icons (controllers, coin, pixel heart) */
+.game-icon{
+    position:absolute;
+    bottom:-90px;
+    left:var(--left,10%);
+    width:var(--size,36px);
+    height:var(--size,36px);
+    transform-origin:center bottom;
+    animation:rise calc(6s + var(--i,0s) * 1s) linear infinite;
+    opacity:0.95;
+}
+.game-icon svg{width:100%; height:100%; display:block;}
+@keyframes rise{
+    0%{transform:translateY(0) rotate(0deg) scale(0.98);} 
+    30%{opacity:1}
+    100%{transform:translateY(-420px) rotate(18deg) scale(1.02); opacity:0.02}
+}
+
+.input-box{
+    margin-bottom:20px;
+}
+
+.input-box input{
+    width:100%;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #0d7376;
+    background:#111;
+    color:white;
+    outline:none;
+    transition:0.3s;
+}
+
+.input-box input:focus{
+    box-shadow:0 0 10px #03ea4c;
+}
+
+.login-btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:linear-gradient(135deg, #08e647 0%, #00c3cc 100%);
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+    transition:all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow:0 4px 15px rgba(8, 230, 71, 0.3);
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.login-btn::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition:left 0.5s;
+}
+
+.login-btn:hover{
+    transform:translateY(-3px) scale(1.02);
+    box-shadow:0 12px 25px rgba(8, 230, 71, 0.5), 0 0 30px rgba(0, 195, 204, 0.4);
+    background:linear-gradient(135deg, #00c3cc 0%, #08e647 100%);
+}
+
+.login-btn:hover::before{
+    left:100%;
+}
+
+.login-btn:active{
+    transform:translateY(-1px) scale(0.98);
+    box-shadow:0 6px 12px rgba(8, 230, 71, 0.4), 0 0 15px rgba(0, 195, 204, 0.3);
+}
+
+.login-btn::after{
+    content:'';
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:0;
+    height:0;
+    background:rgba(255,255,255,0.5);
+    border-radius:50%;
+    transform:translate(-50%, -50%);
+    pointer-events:none;
+}
+
+.login-btn:active::after{
+    animation:ripple 0.6s ease-out;
+}
+
+@keyframes ripple{
+    0%{
+        width:0;
+        height:0;
+        opacity:1;
+    }
+    100%{
+        width:300px;
+        height:300px;
+        opacity:0;
+    }
+}
+
+/* social buttons */
+.social-btn{
+    display:inline-block;
+    margin:6px 6px 0 6px;
+    padding:8px 12px;
+    font-size:13px;
+    color:#e8f1ff;
+    background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.06));
+    border-radius:8px;
+    text-decoration:none;
+    border:1px solid rgba(255,255,255,0.04);
+    transition:transform .18s ease, box-shadow .18s ease;
+}
+.social-btn:hover{transform:translateY(-4px); box-shadow:0 8px 20px rgba(40,120,255,0.08)}
+
+/* أنيميشن */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(-30px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes slideUp{
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- left-side 3-dash menu button -->
+<button id="menu-btn" class="menu-btn" aria-expanded="false" aria-controls="menu-panel" title="فتح القائمة">
+    <span class="dash"></span>
+    <span class="dash"></span>
+    <span class="dash"></span>
+</button>
+
+<div id="menu-panel" class="menu-panel" role="menu" aria-hidden="true">
+    <ul>
+        <li><a href="#" class="menu-link">تواصل</a></li>
+        <li><a href="#" class="menu-link">قائمة الألعاب</a></li>
+        <li><a href="#" class="menu-link">الإعدادات</a></li>
+        <li><a href="#" class="menu-link">حول</a></li>
+    </ul>
+</div>
+
+<h1 class="site-title">NIDALE 4GAME</h1>
+<p class="site-desc"><span class="typing" data-text="عالم متكامل من الألعاب — مشاركة التحديات، جمع المكافآت، واللعب مع مجتمع نشط."></span></p>
+
+<div class="login-box">
+    <h2>تسجيل الدخول</h2>
+    <div class="balloons" aria-hidden="true">
+        <!-- controller -->
+        <span class="game-icon" style="--i:0; --left:8%; --size:44px;">
+            <svg viewBox="0 0 64 64" aria-hidden="true"><path fill="#ff6b6b" d="M12 34c0 0-2-6 4-10s16-4 16-4 10 0 16 4 4 10 4 10 0 8-6 12-20 6-20 6-14-1-18-6-2-12-2-12z"/><circle cx="30" cy="30" r="3" fill="#fff"/><rect x="36" y="26" width="4" height="4" rx="1" fill="#fff"/></svg>
+        </span>
+        <!-- coin -->
+        <span class="game-icon" style="--i:0.8; --left:26%; --size:34px;">
+            <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="18" fill="#ffd36b"/><circle cx="32" cy="32" r="9" fill="#ffecb3"/></svg>
+        </span>
+        <!-- pixel heart -->
+        <span class="game-icon" style="--i:1.2; --left:44%; --size:36px;">
+            <svg viewBox="0 0 64 64" aria-hidden="true"><path fill="#ff7bd1" d="M32 50s-18-11-18-24c0-7 6-12 12-12 4 0 6 2 6 2s2-2 6-2c6 0 12 5 12 12 0 13-18 24-18 24z"/></svg>
+        </span>
+        <!-- star -->
+        <span class="game-icon" style="--i:1.6; --left:62%; --size:30px;">
+            <svg viewBox="0 0 64 64" aria-hidden="true"><polygon fill="#6b8bff" points="32 6 39 26 60 26 42 38 49 58 32 46 15 58 22 38 4 26 25 26"/></svg>
+        </span>
+        <!-- spark -->
+        <span class="game-icon" style="--i:0.5; --left:76%; --size:28px;">
+            <svg viewBox="0 0 64 64" aria-hidden="true"><path fill="#6bffcf" d="M32 6 L36 26 L58 28 L40 40 L46 60 L32 48 L18 60 L24 40 L6 28 L28 26 Z"/></svg>
+        </span>
+    </div>
+
+    <h3 style="color:#e8f1ff; font-size:18px; margin-bottom:20px; text-align:center; font-weight:600;">Sign in to Your Account</h3>
+    
+    <form>
+        <div class="input-box">
+            <label style="color:#e8f1ff; font-size:14px; display:block; margin-bottom:6px;">Email <span style="color:#ff6b6b;">*</span></label>
+            <input type="email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="input-box">
+            <label style="color:#e8f1ff; font-size:14px; display:block; margin-bottom:6px;">Password <span style="color:#ff6b6b;">*</span></label>
+            <input type="password" placeholder="Enter your password" required>
+        </div>
+
+        <div style="text-align:right; margin-bottom:16px;">
+            <a href="#" style="color:#6ba3ff; font-size:13px; text-decoration:none; transition:color 0.3s;">Forgot Password</a>
+        </div>
+
+        <button type="submit" class="login-btn">Sign In</button>
+    </form>
+    
+    <!-- divider -->
+    <div style="text-align:center; margin:16px 0; color:#7a8fa8; font-size:13px; position:relative; z-index:1;">or</div>
+    
+    <!-- social/contact buttons -->
+    <div style="margin-top:14px; text-align:center; position:relative; z-index:1;">
+        <a href="#" class="social-btn" aria-label="Sign in with Google" style="width:100%; display:block; box-sizing:border-box;">Sign in with Google</a>
+    </div>
+
+    <div style="margin-top:16px; text-align:center; color:#a0b0c8; font-size:13px; position:relative; z-index:1;">
+        Don't have an account? <a href="#" style="color:#6ba3ff; text-decoration:none; font-weight:600; transition:color 0.3s;">Create Now</a>
+    </div>
+</div>
+
+</body>
+<script>
+// typing effect (simple, accessible)
+document.addEventListener('DOMContentLoaded', function(){
+    const el = document.querySelector('.typing');
+    if(!el) return;
+    const text = el.getAttribute('data-text') || el.textContent.trim();
+    el.textContent = '';
+    let i = 0;
+    const speed = 34; // ms per char
+    function type(){
+        if(i <= text.length){
+            el.textContent = text.slice(0,i);
+            i++;
+            setTimeout(type, speed + Math.random()*20);
+        }
+    }
+    // small delay before typing
+    setTimeout(type, 300);
+
+    // menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const panel = document.getElementById('menu-panel');
+    function closeMenu(){
+        panel.classList.remove('open');
+        panel.setAttribute('aria-hidden','true');
+        menuBtn.setAttribute('aria-expanded','false');
+    }
+    function openMenu(){
+        panel.classList.add('open');
+        panel.setAttribute('aria-hidden','false');
+        menuBtn.setAttribute('aria-expanded','true');
+    }
+    menuBtn.addEventListener('click', function(e){
+        const opened = panel.classList.contains('open');
+        if(opened) closeMenu(); else openMenu();
+    });
+    // close when clicking outside
+    document.addEventListener('click', function(ev){
+        if(!panel.classList.contains('open')) return;
+        const path = ev.composedPath ? ev.composedPath() : (ev.path || []);
+        if(path.indexOf(panel) >= 0 || path.indexOf(menuBtn) >= 0) return;
+        closeMenu();
+    });
+    // close on Esc
+    document.addEventListener('keydown', function(ev){ if(ev.key === 'Escape') closeMenu(); });
+});
+</script>
+</html>

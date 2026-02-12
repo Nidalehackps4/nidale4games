@@ -758,9 +758,9 @@
             </a>
          </div>
 
-         <div class="modal-signup">
-            Don't have an account? <a href="#">Create Now</a>
-         </div>
+            <div class="modal-signup">
+                Don't have an account? <a href="login.html" id="createNowLink">Create Now</a>
+            </div>
       </div>
    </div>
 
@@ -966,6 +966,16 @@
       loginModal.classList.remove('active');
       document.body.style.overflow = 'auto';
    });
+
+    // Redirect to registration page from modal signup link
+    const createNowLink = document.getElementById('createNowLink');
+    if (createNowLink) {
+        createNowLink.addEventListener('click', function() {
+            loginModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            // default anchor navigation will open login.html
+        });
+    }
 </script>
 
 </html>
