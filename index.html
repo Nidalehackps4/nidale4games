@@ -31,7 +31,7 @@
         
         h1 {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
             margin: 30px 0;
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
@@ -40,7 +40,7 @@
         
         h2 {
             color: white;
-            font-size: 1.8rem;
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
             margin: 20px 0 10px;
             border-bottom: 3px solid rgba(255, 255, 255, 0.3);
             padding-bottom: 10px;
@@ -49,14 +49,14 @@
         
         h3 {
             color: #764ba2;
-            font-size: 1.4rem;
+            font-size: clamp(1rem, 3vw, 1.4rem);
             margin: 15px 0;
             animation: fadeInRight 0.6s ease-out;
         }
         
         h4 {
             color: #667eea;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
         }
         
         p {
@@ -80,10 +80,11 @@
         
         section {
             background: rgba(255, 255, 255, 0.95);
-            padding: 25px;
+            padding: clamp(15px, 5vw, 25px);
             margin: 20px auto;
             border-radius: 12px;
             max-width: 1000px;
+            width: 90%;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             animation: fadeInUp 0.6s ease-out;
         }
@@ -95,9 +96,12 @@
             padding: 12px;
             border: 2px solid #667eea;
             border-radius: 8px;
-            font-size: 14px;
+            font-size: clamp(12px, 2vw, 14px);
             transition: all 0.3s ease;
             font-family: inherit;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
         
         input[type="search"]:focus,
@@ -113,14 +117,15 @@
         input[type="submit"],
         input[type="reset"],
         input[type="button"] {
-            padding: 12px 24px;
+            padding: clamp(10px, 2vw, 12px) clamp(20px, 3vw, 24px);
             border: none;
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 14px;
+            font-size: clamp(12px, 2vw, 14px);
             font-family: inherit;
+            margin: 5px 5px 5px 0;
         }
         
         input[type="submit"] {
@@ -161,10 +166,12 @@
         a[href *="ROCKSTAR"] {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 12px 24px;
+            padding: clamp(8px, 2vw, 12px) clamp(16px, 3vw, 24px);
             border-radius: 8px;
             display: inline-block;
-            margin: 10px 0;
+            margin: clamp(8px, 2vw, 10px) 0;
+            font-size: clamp(12px, 2vw, 14px);
+            text-align: center;
         }
         
         a[download]:hover,
@@ -177,6 +184,9 @@
             border-radius: 12px;
             transition: transform 0.3s ease;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            max-width: 100%;
+            height: auto;
+            display: block;
         }
         
         img:hover {
@@ -187,6 +197,10 @@
             border-radius: 12px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease;
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16/9;
         }
         
         iframe:hover {
@@ -194,33 +208,36 @@
         }
         
         table {
-            width: 90%;
+            width: min(90%, 1200px);
             margin: 20px auto;
             border-collapse: collapse;
             background: white;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            display: block;
+            overflow-x: auto;
+            font-size: clamp(12px, 2vw, 14px);
         }
         
         table caption {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 20px;
-            font-size: 1.2rem;
+            padding: clamp(10px, 3vw, 20px);
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 600;
         }
         
         table th {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 15px;
+            padding: clamp(10px, 2vw, 15px);
             text-align: left;
             font-weight: 600;
         }
         
         table td {
-            padding: 12px 15px;
+            padding: clamp(8px, 2vw, 12px) clamp(8px, 2vw, 15px);
             border-bottom: 1px solid #eee;
         }
         
@@ -232,17 +249,18 @@
         
         form {
             background: white;
-            padding: 30px;
+            padding: clamp(20px, 5vw, 30px);
             border-radius: 12px;
             max-width: 600px;
             margin: 30px auto;
+            width: 90%;
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
         }
         
         fieldset {
             border: 2px solid #667eea;
             border-radius: 8px;
-            padding: 20px;
+            padding: clamp(15px, 4vw, 20px);
             margin-bottom: 20px;
         }
         
@@ -250,7 +268,7 @@
             color: #764ba2;
             font-weight: 700;
             padding: 0 10px;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
         }
         
         label {
@@ -258,6 +276,7 @@
             margin: 15px 0 5px;
             font-weight: 600;
             color: #667eea;
+            font-size: clamp(13px, 2vw, 14px);
         }
         
         input[type="radio"],
@@ -351,22 +370,123 @@
             }
         }
         
+        /* Mobile Devices (< 480px) */
+        @media (max-width: 480px) {
+            body {
+                font-size: 14px;
+            }
+            
+            section {
+                width: 95%;
+                margin: 10px auto;
+                padding: 12px;
+            }
+            
+            form {
+                width: 95%;
+                margin: 15px auto;
+                padding: 15px;
+            }
+            
+            fieldset {
+                padding: 12px;
+            }
+            
+            table {
+                font-size: 12px;
+            }
+            
+            table th,
+            table td {
+                padding: 8px 5px;
+            }
+            
+            .signin-btn {
+                top: 10px;
+                right: 10px;
+                padding: 8px 12px;
+            }
+            
+            .login-modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+            
+            input[type="submit"],
+            input[type="reset"],
+            input[type="button"] {
+                width: 100%;
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+            
+            ol, ul {
+                margin: 15px 0 15px 20px;
+            }
+        }
+        
+        /* Tablets (481px - 768px) */
         @media (max-width: 768px) {
             h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+                margin: 20px 0;
             }
             
             h2 {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
+            }
+            
+            h3 {
+                font-size: 1.1rem;
             }
             
             section, form {
-                margin: 15px;
-                padding: 15px;
+                width: 92%;
+                margin: 15px auto;
+                padding: 20px;
             }
             
             table {
                 width: 95%;
+            }
+            
+            .signin-btn {
+                top: 15px;
+                right: 15px;
+            }
+            
+            .login-modal-content {
+                max-width: 90%;
+                padding: 30px;
+            }
+            
+            input[type="submit"],
+            input[type="reset"],
+            input[type="button"] {
+                width: auto;
+            }
+        }
+        
+        /* Landscape mode on small devices */
+        @media (max-height: 500px) and (orientation: landscape) {
+            section, form {
+                margin: 10px auto;
+                padding: 15px;
+            }
+            
+            h1 {
+                margin: 10px 0;
+            }
+        }
+        
+        /* Large screens (> 1024px) */
+        @media (min-width: 1024px) {
+            section {
+                max-width: 1000px;
+            }
+            
+            form {
+                max-width: 600px;
             }
         }
 
@@ -376,13 +496,13 @@
             top: 20px;
             right: 20px;
             z-index: 100;
-            padding: 10px 24px;
+            padding: clamp(8px, 2vw, 10px) clamp(16px, 3vw, 24px);
             background: linear-gradient(135deg, #08e647 0%, #00c3cc 100%);
             color: black;
             border: none;
             border-radius: 8px;
             font-weight: 700;
-            font-size: 14px;
+            font-size: clamp(12px, 2vw, 14px);
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             box-shadow: 0 4px 15px rgba(8, 230, 71, 0.3);
@@ -422,10 +542,10 @@
 
         .login-modal-content {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            padding: 40px;
+            padding: clamp(20px, 5vw, 40px);
             border-radius: 16px;
             max-width: 450px;
-            width: 90%;
+            width: min(90%, 450px);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
             animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative;
@@ -433,7 +553,7 @@
 
         .login-modal-content h2 {
             color: #e8f1ff;
-            font-size: 22px;
+            font-size: clamp(18px, 4vw, 22px);
             margin-bottom: 10px;
             text-align: center;
             border: none;
@@ -443,7 +563,7 @@
         .login-modal-content p {
             color: #a0b0c8;
             text-align: center;
-            font-size: 13px;
+            font-size: clamp(12px, 2vw, 13px);
             margin-bottom: 20px;
         }
 
@@ -451,7 +571,7 @@
             position: absolute;
             right: 20px;
             top: 20px;
-            font-size: 28px;
+            font-size: clamp(24px, 5vw, 28px);
             font-weight: bold;
             color: #e8f1ff;
             cursor: pointer;
@@ -475,7 +595,7 @@
 
         .modal-form label {
             color: #e8f1ff;
-            font-size: 13px;
+            font-size: clamp(11px, 2vw, 13px);
             display: block;
             margin-bottom: 6px;
             font-weight: 600;
@@ -491,6 +611,8 @@
             outline: none;
             transition: all 0.3s ease;
             font-family: inherit;
+            font-size: clamp(12px, 2vw, 14px);
+            box-sizing: border-box;
         }
 
         .modal-form input:focus {
@@ -506,7 +628,7 @@
 
         .modal-form .forgot-pwd a {
             color: #6ba3ff;
-            font-size: 12px;
+            font-size: clamp(11px, 2vw, 12px);
             text-decoration: none;
             transition: color 0.3s ease;
         }
@@ -530,7 +652,7 @@
             box-shadow: 0 4px 15px rgba(8, 230, 71, 0.3);
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            font-size: 13px;
+            font-size: clamp(11px, 2vw, 13px);
         }
 
         .modal-form .login-btn:hover {
@@ -546,7 +668,7 @@
             text-align: center;
             margin: 16px 0;
             color: #7a8fa8;
-            font-size: 12px;
+            font-size: clamp(11px, 2vw, 12px);
             position: relative;
         }
 
@@ -571,7 +693,7 @@
         .modal-signup {
             text-align: center;
             color: #a0b0c8;
-            font-size: 12px;
+            font-size: clamp(11px, 2vw, 12px);
             margin-top: 16px;
         }
 
@@ -642,9 +764,9 @@
       </div>
    </div>
 
-   <div>
-      <label for="search">
-      <input type="search" id="search" name="search" placeholder="Search for games "><input type="submit" value="search">
+   <div style="padding: clamp(10px, 2vw, 20px); margin: clamp(10px, 2vw, 20px);">
+      <label for="search" style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+      <input type="search" id="search" name="search" placeholder="Search for games" style="flex: 1; min-width: 200px; max-width: 400px;"><input type="submit" value="search">
       </label>
    </div>
  <h1>NIDALE 4GAMING</h1>
@@ -661,13 +783,12 @@
 <H3>ACTION GAMES</H3>
  <H2>PS4 GAMES</H2>
  <H3>READ DEAD REDEMPTION 2  </H3>
- <img width="200" title="RED DEAD 2 PS4 " src="rdr2.jpg" >
+ <img style="max-width: 100%; width: 100%; height: auto; max-width: 300px;" title="RED DEAD 2 PS4 " src="rdr2.jpg" >
  <br>
  <a download="RDR2 PS4 COVER" href="rdr2.jpg" >Download photo cover</a>
  <br>
 <iframe 
-    width="560" 
-    height="315" 
+    style="width: 100%; max-width: 100%; height: auto; aspect-ratio: 16/9; max-width: 560px;"
     src="https://www.youtube-nocookie.com/embed/gmA6MrX81z4" 
     title="YouTube video player" 
     frameborder="0" 
@@ -774,7 +895,7 @@
  <label for="email">email</label>
  <input type="email" id="email" name="email" required><br><br>
  <label for="msg">message</label>
- <textarea id="msg" name="msg" required rows="3" cols="55"></textarea><br><br> 
+ <textarea id="msg" name="msg" required rows="3" style="resize: vertical; min-height: 100px;"></textarea><br><br> 
  <input type="reset" value="clear">
  <input type="submit" value="send">
          </fieldset>   
