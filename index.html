@@ -721,8 +721,8 @@
     </style>
 </head>
 <body>
-   <!-- Sign In Button -->
-   <button class="signin-btn" id="signinBtn">Sign In</button>
+    <!-- Sign In Button -->
+    <a href="login.html" class="signin-btn" id="signinBtn" target="_blank" rel="noopener">Sign In</a>
 
    <!-- Login Modal -->
    <div class="login-modal" id="loginModal">
@@ -924,11 +924,7 @@
    const loginModal = document.getElementById('loginModal');
    const closeModal = document.getElementById('closeModal');
 
-   // Open modal
-   signinBtn.addEventListener('click', function() {
-      loginModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-   });
+    // Note: Sign In now navigates to login.html (new window). Modal open removed.
 
    // Close modal
    closeModal.addEventListener('click', function() {
