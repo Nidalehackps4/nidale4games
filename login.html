@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- خطوط Google Fonts: احترافي للعناوين + نص عام -->
+<!-- Google Fonts: Professional for headings + general text -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
 
 <title>NIDALE 4GAME</title>
@@ -28,12 +28,8 @@ body{
     overflow:hidden;
     position:relative;
 
-    /* خلفية أغلفة ألعاب + كونسولات */
-    background:
-    linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
-    url("https://images.unsplash.com/photo-1605902711622-cfb43c4437d1"),
-    url("https://images.unsplash.com/photo-1598550880863-4e8aa3d0a6f6"),
-    url("https://images.unsplash.com/photo-1511512578047-dfb367046420");
+    /* Background for game covers + consoles */
+    background:linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url("https://images.unsplash.com/photo-1605902711622-cfb43c4437d1?w=1200"), url("https://images.unsplash.com/photo-1598550880863-4e8aa3d0a6f6?w=1200"), url("https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1200");
     background-size:cover;
     background-position:center;
 }
@@ -52,7 +48,7 @@ body::before{
     background-repeat: no-repeat, repeat;
 }
 
-/* عنوان الموقع */
+/* Website title */
 .site-title{
     font-family: 'Montserrat', sans-serif;
     font-size:44px;
@@ -126,8 +122,7 @@ body::before{
 }
 
 
-
-/* تأثير glitch */
+/* Glitch effect */
 .site-title::before,
 .site-title::after{
     content:"NIDALE 4GAME";
@@ -158,7 +153,7 @@ body::before{
     100%{transform:translate(0);}
 }
 
-/* صندوق تسجيل الدخول */
+/* Login box */
 .login-box{
     width:360px;
     padding:36px 32px 22px 32px;
@@ -231,7 +226,7 @@ body::before{
 }
 @keyframes blink{50%{opacity:0}}
 
-/* Balloon animation inside the login box */
+/* Decorative icons inside login box */
 .balloons{
     position:absolute;
     inset:0;
@@ -239,13 +234,13 @@ body::before{
     overflow:hidden;
     z-index:0;
 }
-/* keep form above decorative icons */
+/* Keep form above decorative icons */
 .login-box h2,
 .login-box form{
     position:relative;
     z-index:1;
 }
-/* game-themed floating icons (controllers, coin, pixel heart) */
+/* Game-themed floating icons (controllers, coin, pixel heart) */
 .game-icon{
     position:absolute;
     bottom:-90px;
@@ -355,7 +350,7 @@ body::before{
     }
 }
 
-/* social buttons */
+/* Social buttons */
 .social-btn{
     display:inline-block;
     margin:6px 6px 0 6px;
@@ -370,7 +365,7 @@ body::before{
 }
 .social-btn:hover{transform:translateY(-4px); box-shadow:0 8px 20px rgba(40,120,255,0.08)}
 
-/* أنيميشن */
+/* Animations */
 @keyframes fadeIn{
     from{opacity:0; transform:translateY(-30px);}
     to{opacity:1; transform:translateY(0);}
@@ -389,7 +384,7 @@ body::before{
 <body>
 
 <!-- left-side 3-dash menu button -->
-<button id="menu-btn" class="menu-btn" aria-expanded="false" aria-controls="menu-panel" title="فتح القائمة">
+<button id="menu-btn" class="menu-btn" aria-expanded="false" aria-controls="menu-panel" title="Open Menu">
     <span class="dash"></span>
     <span class="dash"></span>
     <span class="dash"></span>
@@ -397,18 +392,18 @@ body::before{
 
 <div id="menu-panel" class="menu-panel" role="menu" aria-hidden="true">
     <ul>
-        <li><a href="#" class="menu-link">تواصل</a></li>
-        <li><a href="#" class="menu-link">قائمة الألعاب</a></li>
-        <li><a href="#" class="menu-link">الإعدادات</a></li>
-        <li><a href="#" class="menu-link">حول</a></li>
+        <li><a href="#" class="menu-link">Contact</a></li>
+        <li><a href="#" class="menu-link">Games List</a></li>
+        <li><a href="#" class="menu-link">Settings</a></li>
+        <li><a href="#" class="menu-link">About</a></li>
     </ul>
 </div>
 
 <h1 class="site-title">NIDALE 4GAME</h1>
-<p class="site-desc"><span class="typing" data-text="عالم متكامل من الألعاب — مشاركة التحديات، جمع المكافآت، واللعب مع مجتمع نشط."></span></p>
+<p class="site-desc"><span class="typing" data-text="A complete gaming world — Share challenges, collect rewards, and play with an active community."></span></p>
 
 <div class="login-box">
-    <h2>تسجيل الدخول</h2>
+    <h2>Sign in to Your Account</h2>
     <div class="balloons" aria-hidden="true">
         <!-- controller -->
         <span class="game-icon" style="--i:0; --left:8%; --size:44px;">
@@ -432,7 +427,7 @@ body::before{
         </span>
     </div>
 
-    <h3 style="color:#e8f1ff; font-size:18px; margin-bottom:20px; text-align:center; font-weight:600;">Sign in to Your Account</h3>
+    <h2>Sign in to Your Account</h2>
     
     <form>
         <div class="input-box">
@@ -452,10 +447,10 @@ body::before{
         <button type="submit" class="login-btn">Sign In</button>
     </form>
     
-    <!-- divider -->
+    <!-- Divider -->
     <div style="text-align:center; margin:16px 0; color:#7a8fa8; font-size:13px; position:relative; z-index:1;">or</div>
     
-    <!-- social/contact buttons -->
+    <!-- Social/contact buttons -->
     <div style="margin-top:14px; text-align:center; position:relative; z-index:1;">
         <a href="#" class="social-btn" aria-label="Sign in with Google" style="width:100%; display:block; box-sizing:border-box;">Sign in with Google</a>
     </div>
@@ -467,7 +462,7 @@ body::before{
 
 </body>
 <script>
-// typing effect (simple, accessible)
+// Typing effect (simple, accessible)
 document.addEventListener('DOMContentLoaded', function(){
     const el = document.querySelector('.typing');
     if(!el) return;
